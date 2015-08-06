@@ -196,7 +196,7 @@ module AutoParse
     if value != nil
       format = schema_class.data['format']
       if format == 'byte'
-        Base64.decode64(value)
+        Base64.urlsafe_decode64(value)
       elsif format == 'date-time'
         Time.parse(value)
       elsif format == 'url'
@@ -214,7 +214,7 @@ module AutoParse
   def self.export_string(value, schema_class)
     format = schema_class.data['format']
     if format == 'byte'
-      Base64.encode64(value)
+      Base64.urlsafe_encode64(value)
     elsif format == 'date-time'
       if value.respond_to?(:to_str)
         value = Time.parse(value.to_str)
